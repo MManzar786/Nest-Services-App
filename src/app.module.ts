@@ -6,16 +6,16 @@ import { User } from './user/entities/user.entity';
 import { UsersController } from './user/user.controller';
 import { UserModule } from './user/user.module';
 import { UploadModule } from './upload/upload.module';
-
+// postgresql://postgres:sVaR1DFzQKChuXpywNbs@containers-us-west-97.railway.app:7151/railway
 @Module({
   imports: [
     UserModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
+      host: 'containers-us-west-97.railway.app',
+      port: 7151,
       username: 'postgres',
-      password: '1234',
+      password: 'sVaR1DFzQKChuXpywNbs',
       database: 'chakwal_services_db',
       entities: [User],
       synchronize: true,
