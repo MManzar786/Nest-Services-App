@@ -16,7 +16,7 @@ import { UploadModule } from './upload/upload.module';
       port: 7151,
       username: 'postgres',
       password: 'sVaR1DFzQKChuXpywNbs',
-      database: 'chakwal_services_db',
+      database: 'railway',
       entities: [User],
       synchronize: true,
     }),
