@@ -25,9 +25,16 @@ const typeorm_1 = __webpack_require__(4);
 const app_controller_1 = __webpack_require__(5);
 const app_service_1 = __webpack_require__(6);
 const user_entity_1 = __webpack_require__(7);
-const user_controller_1 = __webpack_require__(10);
-const user_module_1 = __webpack_require__(14);
+const user_module_1 = __webpack_require__(10);
 const upload_module_1 = __webpack_require__(15);
+const vendor_module_1 = __webpack_require__(21);
+const product_module_1 = __webpack_require__(29);
+const category_module_1 = __webpack_require__(32);
+const order_module_1 = __webpack_require__(34);
+const category_entity_1 = __webpack_require__(24);
+const vendor_entity_1 = __webpack_require__(22);
+const product_entity_1 = __webpack_require__(25);
+const order_entity_1 = __webpack_require__(26);
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -41,12 +48,16 @@ AppModule = __decorate([
                 username: 'postgres',
                 password: 'sVaR1DFzQKChuXpywNbs',
                 database: 'railway',
-                entities: [user_entity_1.User],
+                entities: [user_entity_1.User, category_entity_1.Category, vendor_entity_1.Vendor, product_entity_1.Product, order_entity_1.Order],
                 synchronize: true,
             }),
             upload_module_1.UploadModule,
+            vendor_module_1.VendorModule,
+            product_module_1.ProductModule,
+            category_module_1.CategoryModule,
+            order_module_1.OrderModule,
         ],
-        controllers: [app_controller_1.AppController, user_controller_1.UsersController],
+        controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);
@@ -227,6 +238,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UserModule = void 0;
+const common_1 = __webpack_require__(3);
+const typeorm_1 = __webpack_require__(4);
+const user_entity_1 = __webpack_require__(7);
+const user_controller_1 = __webpack_require__(11);
+const user_service_1 = __webpack_require__(13);
+let UserModule = class UserModule {
+};
+UserModule = __decorate([
+    (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.User])],
+        controllers: [user_controller_1.UsersController],
+        exports: [user_service_1.UsersService],
+        providers: [user_service_1.UsersService],
+    })
+], UserModule);
+exports.UserModule = UserModule;
+
+
+/***/ }),
+/* 11 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
@@ -234,8 +276,8 @@ var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UsersController = void 0;
 const common_1 = __webpack_require__(3);
-const base_controller_1 = __webpack_require__(11);
-const user_service_1 = __webpack_require__(12);
+const base_controller_1 = __webpack_require__(12);
+const user_service_1 = __webpack_require__(13);
 let UsersController = class UsersController extends base_controller_1.BaseController {
     constructor(usersService) {
         super(usersService);
@@ -250,7 +292,7 @@ exports.UsersController = UsersController;
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -381,7 +423,7 @@ exports.BaseController = BaseController;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -404,7 +446,7 @@ const typeorm_1 = __webpack_require__(4);
 const typeorm_2 = __webpack_require__(9);
 const user_entity_1 = __webpack_require__(7);
 const common_1 = __webpack_require__(3);
-const base_service_1 = __webpack_require__(13);
+const base_service_1 = __webpack_require__(14);
 let UsersService = class UsersService extends base_service_1.BaseService {
     constructor(repository) {
         super(repository);
@@ -419,7 +461,7 @@ exports.UsersService = UsersService;
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -511,37 +553,6 @@ BaseService = __decorate([
     __metadata("design:paramtypes", [typeof (_a = typeof typeorm_1.Repository !== "undefined" && typeorm_1.Repository) === "function" ? _a : Object])
 ], BaseService);
 exports.BaseService = BaseService;
-
-
-/***/ }),
-/* 14 */
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.UserModule = void 0;
-const common_1 = __webpack_require__(3);
-const typeorm_1 = __webpack_require__(4);
-const user_entity_1 = __webpack_require__(7);
-const user_controller_1 = __webpack_require__(10);
-const user_service_1 = __webpack_require__(12);
-let UserModule = class UserModule {
-};
-UserModule = __decorate([
-    (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.User])],
-        controllers: [user_controller_1.UsersController],
-        exports: [user_service_1.UsersService],
-        providers: [user_service_1.UsersService],
-    })
-], UserModule);
-exports.UserModule = UserModule;
 
 
 /***/ }),
@@ -655,6 +666,817 @@ module.exports = require("uuid");
 /***/ ((module) => {
 
 module.exports = require("@nestjs/platform-express");
+
+/***/ }),
+/* 21 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.VendorModule = void 0;
+const common_1 = __webpack_require__(3);
+const typeorm_1 = __webpack_require__(4);
+const vendor_entity_1 = __webpack_require__(22);
+const vendor_controller_1 = __webpack_require__(27);
+const vendor_service_1 = __webpack_require__(28);
+let VendorModule = class VendorModule {
+};
+VendorModule = __decorate([
+    (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([vendor_entity_1.Vendor])],
+        controllers: [vendor_controller_1.VendorsController],
+        exports: [vendor_service_1.VendorsService],
+        providers: [vendor_service_1.VendorsService],
+    })
+], VendorModule);
+exports.VendorModule = VendorModule;
+
+
+/***/ }),
+/* 22 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a, _b;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Vendor = void 0;
+const base_entitiy_1 = __webpack_require__(8);
+const category_service_1 = __webpack_require__(23);
+const category_entity_1 = __webpack_require__(24);
+const product_entity_1 = __webpack_require__(25);
+const typeorm_1 = __webpack_require__(9);
+let Vendor = class Vendor extends base_entitiy_1.BaseEntity {
+    constructor(o) {
+        super();
+        Object.assign(this, o);
+    }
+};
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", Number)
+], Vendor.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Vendor.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Vendor.prototype, "description", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Vendor.prototype, "imageUrl", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Vendor.prototype, "address", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Vendor.prototype, "timing", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Vendor.prototype, "serviceId", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Vendor.prototype, "phoneNo", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => category_entity_1.Category, (service) => service.vendors),
+    __metadata("design:type", typeof (_b = typeof category_service_1.CategoryService !== "undefined" && category_service_1.CategoryService) === "function" ? _b : Object)
+], Vendor.prototype, "service", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => product_entity_1.Product, (product) => product.vendor),
+    __metadata("design:type", Array)
+], Vendor.prototype, "products", void 0);
+Vendor = __decorate([
+    (0, typeorm_1.Entity)('vendor'),
+    __metadata("design:paramtypes", [typeof (_a = typeof Object !== "undefined" && Object) === "function" ? _a : Object])
+], Vendor);
+exports.Vendor = Vendor;
+
+
+/***/ }),
+/* 23 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.CategoryService = void 0;
+const common_1 = __webpack_require__(3);
+const typeorm_1 = __webpack_require__(4);
+const typeorm_2 = __webpack_require__(9);
+const base_service_1 = __webpack_require__(14);
+const category_entity_1 = __webpack_require__(24);
+let CategoryService = class CategoryService extends base_service_1.BaseService {
+    constructor(categoryRepository) {
+        super(categoryRepository);
+        this.categoryRepository = categoryRepository;
+    }
+};
+CategoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(category_entity_1.Category)),
+    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _a : Object])
+], CategoryService);
+exports.CategoryService = CategoryService;
+
+
+/***/ }),
+/* 24 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Category = void 0;
+const base_entitiy_1 = __webpack_require__(8);
+const vendor_entity_1 = __webpack_require__(22);
+const typeorm_1 = __webpack_require__(9);
+let Category = class Category extends base_entitiy_1.BaseEntity {
+    constructor() {
+        super();
+    }
+};
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", Number)
+], Category.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Category.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Category.prototype, "description", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Category.prototype, "imageUrl", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => vendor_entity_1.Vendor, (vendor) => vendor.service),
+    __metadata("design:type", Array)
+], Category.prototype, "vendors", void 0);
+Category = __decorate([
+    (0, typeorm_1.Entity)('category'),
+    __metadata("design:paramtypes", [])
+], Category);
+exports.Category = Category;
+
+
+/***/ }),
+/* 25 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a, _b;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Product = void 0;
+const base_entitiy_1 = __webpack_require__(8);
+const order_entity_1 = __webpack_require__(26);
+const typeorm_1 = __webpack_require__(9);
+const vendor_entity_1 = __webpack_require__(22);
+let Product = class Product extends base_entitiy_1.BaseEntity {
+    constructor(o) {
+        super();
+        Object.assign(this, o);
+    }
+};
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", Number)
+], Product.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Product.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Product.prototype, "description", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Product.prototype, "imageUrl", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Product.prototype, "price", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Product.prototype, "vendorId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => vendor_entity_1.Vendor, (vendor) => vendor.products),
+    __metadata("design:type", typeof (_b = typeof vendor_entity_1.Vendor !== "undefined" && vendor_entity_1.Vendor) === "function" ? _b : Object)
+], Product.prototype, "vendor", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => order_entity_1.Order, (orderItem) => orderItem.product),
+    __metadata("design:type", Array)
+], Product.prototype, "orders", void 0);
+Product = __decorate([
+    (0, typeorm_1.Entity)('product'),
+    __metadata("design:paramtypes", [typeof (_a = typeof Object !== "undefined" && Object) === "function" ? _a : Object])
+], Product);
+exports.Product = Product;
+
+
+/***/ }),
+/* 26 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a, _b;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Order = void 0;
+const base_entitiy_1 = __webpack_require__(8);
+const typeorm_1 = __webpack_require__(9);
+const product_entity_1 = __webpack_require__(25);
+let Order = class Order extends base_entitiy_1.BaseEntity {
+    constructor() {
+        super();
+    }
+};
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", Number)
+], Order.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Order.prototype, "customerName", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Order.prototype, "customerEmail", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Order.prototype, "customerAddress", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Order.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'timestamp with time zone' }),
+    __metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
+], Order.prototype, "orderDate", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Order.prototype, "totalPrice", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Order.prototype, "quantity", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Order.prototype, "productId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => product_entity_1.Product, (product) => product.orders),
+    __metadata("design:type", typeof (_b = typeof product_entity_1.Product !== "undefined" && product_entity_1.Product) === "function" ? _b : Object)
+], Order.prototype, "product", void 0);
+Order = __decorate([
+    (0, typeorm_1.Entity)('order'),
+    __metadata("design:paramtypes", [])
+], Order);
+exports.Order = Order;
+
+
+/***/ }),
+/* 27 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a, _b;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.VendorsController = void 0;
+const common_1 = __webpack_require__(3);
+const base_controller_1 = __webpack_require__(12);
+const vendor_service_1 = __webpack_require__(28);
+let VendorsController = class VendorsController extends base_controller_1.BaseController {
+    constructor(vendorService) {
+        super(vendorService);
+        this.vendorService = vendorService;
+    }
+    async findAll(res) {
+        try {
+            const results = await this.vendorService.getAllVendors();
+            return res
+                .status(common_1.HttpStatus.OK)
+                .json({ statusCode: common_1.HttpStatus.OK, data: results });
+        }
+        catch (error) {
+            return res
+                .status(common_1.HttpStatus.NOT_FOUND)
+                .json({ message: "Error. Please try again later." });
+        }
+    }
+};
+__decorate([
+    (0, common_1.Get)("all"),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", typeof (_b = typeof Promise !== "undefined" && Promise) === "function" ? _b : Object)
+], VendorsController.prototype, "findAll", null);
+VendorsController = __decorate([
+    (0, common_1.Controller)("vendors"),
+    __metadata("design:paramtypes", [typeof (_a = typeof vendor_service_1.VendorsService !== "undefined" && vendor_service_1.VendorsService) === "function" ? _a : Object])
+], VendorsController);
+exports.VendorsController = VendorsController;
+
+
+/***/ }),
+/* 28 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.VendorsService = void 0;
+const typeorm_1 = __webpack_require__(4);
+const typeorm_2 = __webpack_require__(9);
+const base_service_1 = __webpack_require__(14);
+const vendor_entity_1 = __webpack_require__(22);
+const common_1 = __webpack_require__(3);
+let VendorsService = class VendorsService extends base_service_1.BaseService {
+    constructor(vendorsRepository) {
+        super(vendorsRepository);
+        this.vendorsRepository = vendorsRepository;
+    }
+    getAllVendors() {
+        return this.vendorsRepository.find({
+            relations: ['service'],
+        });
+    }
+};
+VendorsService = __decorate([
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(vendor_entity_1.Vendor)),
+    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _a : Object])
+], VendorsService);
+exports.VendorsService = VendorsService;
+
+
+/***/ }),
+/* 29 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ProductModule = void 0;
+const common_1 = __webpack_require__(3);
+const typeorm_1 = __webpack_require__(4);
+const product_entity_1 = __webpack_require__(25);
+const product_controller_1 = __webpack_require__(30);
+const product_service_1 = __webpack_require__(31);
+let ProductModule = class ProductModule {
+};
+ProductModule = __decorate([
+    (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([product_entity_1.Product])],
+        controllers: [product_controller_1.ProductsController],
+        exports: [product_service_1.ProductsService],
+        providers: [product_service_1.ProductsService],
+    })
+], ProductModule);
+exports.ProductModule = ProductModule;
+
+
+/***/ }),
+/* 30 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a, _b;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ProductsController = void 0;
+const common_1 = __webpack_require__(3);
+const base_controller_1 = __webpack_require__(12);
+const product_service_1 = __webpack_require__(31);
+let ProductsController = class ProductsController extends base_controller_1.BaseController {
+    constructor(productsService) {
+        super(productsService);
+        this.productsService = productsService;
+    }
+    async findAll(res) {
+        try {
+            const results = await this.productsService.getAllProducts();
+            return res
+                .status(common_1.HttpStatus.OK)
+                .json({ statusCode: common_1.HttpStatus.OK, data: results });
+        }
+        catch (error) {
+            return res
+                .status(common_1.HttpStatus.NOT_FOUND)
+                .json({ message: "Error. Please try again later." });
+        }
+    }
+};
+__decorate([
+    (0, common_1.Get)("all"),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", typeof (_b = typeof Promise !== "undefined" && Promise) === "function" ? _b : Object)
+], ProductsController.prototype, "findAll", null);
+ProductsController = __decorate([
+    (0, common_1.Controller)("products"),
+    __metadata("design:paramtypes", [typeof (_a = typeof product_service_1.ProductsService !== "undefined" && product_service_1.ProductsService) === "function" ? _a : Object])
+], ProductsController);
+exports.ProductsController = ProductsController;
+
+
+/***/ }),
+/* 31 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ProductsService = void 0;
+const common_1 = __webpack_require__(3);
+const typeorm_1 = __webpack_require__(4);
+const typeorm_2 = __webpack_require__(9);
+const base_service_1 = __webpack_require__(14);
+const product_entity_1 = __webpack_require__(25);
+let ProductsService = class ProductsService extends base_service_1.BaseService {
+    constructor(productsRepository) {
+        super(productsRepository);
+        this.productsRepository = productsRepository;
+    }
+    getAllProducts() {
+        return this.productsRepository.find({
+            relations: ['vendor', 'vendor.service'],
+        });
+    }
+};
+ProductsService = __decorate([
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(product_entity_1.Product)),
+    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _a : Object])
+], ProductsService);
+exports.ProductsService = ProductsService;
+
+
+/***/ }),
+/* 32 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.CategoryModule = void 0;
+const common_1 = __webpack_require__(3);
+const typeorm_1 = __webpack_require__(4);
+const category_controller_1 = __webpack_require__(33);
+const category_service_1 = __webpack_require__(23);
+const category_entity_1 = __webpack_require__(24);
+let CategoryModule = class CategoryModule {
+};
+CategoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([category_entity_1.Category])],
+        controllers: [category_controller_1.CategoryController],
+        exports: [category_service_1.CategoryService],
+        providers: [category_service_1.CategoryService],
+    })
+], CategoryModule);
+exports.CategoryModule = CategoryModule;
+
+
+/***/ }),
+/* 33 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.CategoryController = void 0;
+const common_1 = __webpack_require__(3);
+const base_controller_1 = __webpack_require__(12);
+const category_service_1 = __webpack_require__(23);
+let CategoryController = class CategoryController extends base_controller_1.BaseController {
+    constructor(categoryService) {
+        super(categoryService);
+        this.categoryService = categoryService;
+    }
+};
+CategoryController = __decorate([
+    (0, common_1.Controller)('categories'),
+    __metadata("design:paramtypes", [typeof (_a = typeof category_service_1.CategoryService !== "undefined" && category_service_1.CategoryService) === "function" ? _a : Object])
+], CategoryController);
+exports.CategoryController = CategoryController;
+
+
+/***/ }),
+/* 34 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.OrderModule = void 0;
+const common_1 = __webpack_require__(3);
+const typeorm_1 = __webpack_require__(4);
+const order_entity_1 = __webpack_require__(26);
+const order_controller_1 = __webpack_require__(35);
+const order_service_1 = __webpack_require__(36);
+let OrderModule = class OrderModule {
+};
+OrderModule = __decorate([
+    (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([order_entity_1.Order])],
+        controllers: [order_controller_1.OrderController],
+        exports: [order_service_1.OrdersService],
+        providers: [order_service_1.OrdersService],
+    })
+], OrderModule);
+exports.OrderModule = OrderModule;
+
+
+/***/ }),
+/* 35 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a, _b, _c;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.OrderController = void 0;
+const common_1 = __webpack_require__(3);
+const base_controller_1 = __webpack_require__(12);
+const order_service_1 = __webpack_require__(36);
+let OrderController = class OrderController extends base_controller_1.BaseController {
+    constructor(ordersService) {
+        super(ordersService);
+        this.ordersService = ordersService;
+    }
+    async findAll(res) {
+        try {
+            const results = await this.ordersService.getAllOrders();
+            return res
+                .status(common_1.HttpStatus.OK)
+                .json({ statusCode: common_1.HttpStatus.OK, data: results });
+        }
+        catch (error) {
+            return res
+                .status(common_1.HttpStatus.NOT_FOUND)
+                .json({ message: "Error. Please try again later." });
+        }
+    }
+    async addOrder(res, entity) {
+        try {
+            const results = await this.ordersService.addOrders(entity);
+            return res
+                .status(common_1.HttpStatus.OK)
+                .json({ statusCode: common_1.HttpStatus.OK, data: results });
+        }
+        catch (error) {
+            return res
+                .status(common_1.HttpStatus.NOT_FOUND)
+                .json({ message: "Error. Please try again later.", error: error });
+        }
+    }
+    async setOrderDelivered(id) {
+        return this.ordersService.setOrderStatusDelivered(id);
+    }
+};
+__decorate([
+    (0, common_1.Get)("all"),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", typeof (_b = typeof Promise !== "undefined" && Promise) === "function" ? _b : Object)
+], OrderController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Post)("addOrders"),
+    __param(0, (0, common_1.Res)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Array]),
+    __metadata("design:returntype", typeof (_c = typeof Promise !== "undefined" && Promise) === "function" ? _c : Object)
+], OrderController.prototype, "addOrder", null);
+__decorate([
+    (0, common_1.Patch)(":id/delivered"),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], OrderController.prototype, "setOrderDelivered", null);
+OrderController = __decorate([
+    (0, common_1.Controller)("orders"),
+    __metadata("design:paramtypes", [typeof (_a = typeof order_service_1.OrdersService !== "undefined" && order_service_1.OrdersService) === "function" ? _a : Object])
+], OrderController);
+exports.OrderController = OrderController;
+
+
+/***/ }),
+/* 36 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.OrdersService = void 0;
+const common_1 = __webpack_require__(3);
+const typeorm_1 = __webpack_require__(4);
+const typeorm_2 = __webpack_require__(9);
+const base_service_1 = __webpack_require__(14);
+const order_entity_1 = __webpack_require__(26);
+let OrdersService = class OrdersService extends base_service_1.BaseService {
+    constructor(ordersRepository) {
+        super(ordersRepository);
+        this.ordersRepository = ordersRepository;
+    }
+    getAllOrders() {
+        return this.ordersRepository.find({
+            order: {
+                orderDate: 'DESC',
+            },
+            relations: ['product', 'product.vendor'],
+        });
+    }
+    async addOrders(orders) {
+        const result = [];
+        for (const order of orders) {
+            order.orderDate = new Date();
+            const createdOrder = await this.ordersRepository.save(order);
+            result.push(createdOrder);
+        }
+        return result;
+    }
+    async setOrderStatusDelivered(id) {
+        const order = await this.ordersRepository.findOneById(id);
+        if (!order) {
+            throw new Error(`Order with id ${id} not found.`);
+        }
+        order.status = 'Delivered';
+        return this.ordersRepository.save(order);
+    }
+};
+OrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(order_entity_1.Order)),
+    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _a : Object])
+], OrdersService);
+exports.OrdersService = OrdersService;
+
 
 /***/ })
 /******/ 	]);
