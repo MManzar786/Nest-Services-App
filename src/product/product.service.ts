@@ -17,4 +17,11 @@ export class ProductsService extends BaseService<Product> {
       relations: ['vendor', 'vendor.service'],
     });
   }
+
+  getAllProductsByVendorId(id: number): Promise<Product[]> {
+    return this.productsRepository.find({
+      where: { vendorId: id },
+      relations: ['vendor', 'vendor.service'],
+    });
+  }
 }
