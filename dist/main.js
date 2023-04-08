@@ -276,6 +276,7 @@ class BaseController {
     }
     async findAll(res) {
         try {
+            console.log('Find ALL Logs');
             const results = await this._IBaseService.getAll();
             return res
                 .status(common_1.HttpStatus.OK)
@@ -455,6 +456,7 @@ let BaseService = class BaseService {
     }
     getAll() {
         try {
+            console.log('Find ALL Service Logs');
             return this.genericRepository.find();
         }
         catch (error) {
@@ -692,7 +694,7 @@ const core_1 = __webpack_require__(1);
 const app_module_1 = __webpack_require__(2);
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
-    await app.listen(3000);
+    await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
 

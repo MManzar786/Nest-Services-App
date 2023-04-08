@@ -22,6 +22,7 @@ export class BaseService<T extends BaseEntity> implements IBaseService<T> {
 
   getAll(): Promise<T[]> {
     try {
+      console.log('Find ALL Service Logs');
       return <Promise<T[]>>this.genericRepository.find();
     } catch (error) {
       throw new BadGatewayException(error);

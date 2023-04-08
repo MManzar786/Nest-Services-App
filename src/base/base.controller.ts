@@ -18,6 +18,8 @@ export class BaseController<T extends BaseEntity> {
   @Get()
   async findAll(@Res() res): Promise<T[]> {
     try {
+      console.log('Find ALL Logs');
+
       const results: T[] = await this._IBaseService.getAll();
       return res
         .status(HttpStatus.OK)
