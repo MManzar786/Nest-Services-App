@@ -40,7 +40,7 @@ AppModule = __decorate([
                 port: 7151,
                 username: 'postgres',
                 password: 'sVaR1DFzQKChuXpywNbs',
-                database: 'chakwal_services_db',
+                database: 'railway',
                 entities: [user_entity_1.User],
                 synchronize: true,
             }),
