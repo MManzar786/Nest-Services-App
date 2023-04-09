@@ -14,9 +14,15 @@ import { Category } from './category/entities/category.entity';
 import { Vendor } from './vendor/entites/vendor.entity';
 import { Product } from './product/entities/product.entity';
 import { Order } from './order/entities/order.entity';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 // postgresql://postgres:sVaR1DFzQKChuXpywNbs@containers-us-west-97.railway.app:7151/railway
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads',
+    }),
     UserModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
