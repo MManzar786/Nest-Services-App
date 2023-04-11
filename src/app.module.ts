@@ -16,6 +16,7 @@ import { Product } from './product/entities/product.entity';
 import { Order } from './order/entities/order.entity';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 // postgresql://postgres:sVaR1DFzQKChuXpywNbs@containers-us-west-97.railway.app:7151/railway
 @Module({
   imports: [
@@ -24,6 +25,16 @@ import { join } from 'path';
       serveRoot: '/uploads',
     }),
     UserModule,
+    // TypeOrmModule.forRoot({
+    //   type: 'postgres',
+    //   host: 'localhost',
+    //   port: 5432,
+    //   username: 'postgres',
+    //   password: '1234',
+    //   database: 'chakwal_services_db',
+    //   entities: [User, Category, Vendor, Product, Order],
+    //   synchronize: true,
+    // }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'containers-us-west-97.railway.app',
@@ -39,8 +50,9 @@ import { join } from 'path';
     ProductModule,
     CategoryModule,
     OrderModule,
+    JwtModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, JwtService],
 })
 export class AppModule {}

@@ -10,18 +10,9 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: '' })
-  name: string;
-
-  @Column({ default: '' })
-  email: string;
-
-  @Column({ default: '' })
-  phone: string;
-
-  @Column({ default: '' })
-  address: string;
+  @Column()
+  username: string;
 
   @Column()
-  image_url: string;
+  password: string;
 }
