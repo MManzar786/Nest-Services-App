@@ -47,6 +47,19 @@ let ProductsController = class ProductsController extends base_controller_1.Base
                 .json({ message: 'Error. Please try again later.' });
         }
     }
+    async findProductsbyCategoryId(res, id) {
+        try {
+            const results = await this.productsService.getAllProductsByVendorId(id);
+            return res
+                .status(common_1.HttpStatus.OK)
+                .json({ statusCode: common_1.HttpStatus.OK, data: results });
+        }
+        catch (error) {
+            return res
+                .status(common_1.HttpStatus.NOT_FOUND)
+                .json({ message: 'Error. Please try again later.' });
+        }
+    }
 };
 __decorate([
     (0, common_1.Get)('all'),
@@ -63,6 +76,14 @@ __decorate([
     __metadata("design:paramtypes", [Object, Number]),
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "findProductsBybyVendorId", null);
+__decorate([
+    (0, common_1.Get)('byCategoryId/:id'),
+    __param(0, (0, common_1.Res)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Number]),
+    __metadata("design:returntype", Promise)
+], ProductsController.prototype, "findProductsbyCategoryId", null);
 ProductsController = __decorate([
     (0, common_1.Controller)('products'),
     __metadata("design:paramtypes", [product_service_1.ProductsService])

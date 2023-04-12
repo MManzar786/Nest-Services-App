@@ -6,4 +6,5 @@ export declare class ProductsController extends BaseController<Product> {
     constructor(productsService: ProductsService);
     findAll(res: any): Promise<any[]>;
     findProductsBybyVendorId(res: any, id: number): Promise<any[]>;
+    findProductsbyCategoryId(res: any, id: number): Promise<any[]>;
 }

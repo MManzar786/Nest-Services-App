@@ -34,6 +34,14 @@ let ProductsService = class ProductsService extends base_service_1.BaseService {
             relations: ['vendor', 'vendor.service'],
         });
     }
+    getAllProductsByCategoryId(id) {
+        return this.productsRepository
+            .createQueryBuilder('product')
+            .leftJoinAndSelect('product.vendor', 'vendor')
+            .leftJoinAndSelect('vendor.category', 'category')
+            .where('category.id = :categoryId', { categoryId: id })
+            .getMany();
+    }
 };
 ProductsService = __decorate([
     (0, common_1.Injectable)(),

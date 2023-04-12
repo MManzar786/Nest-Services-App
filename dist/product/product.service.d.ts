@@ -6,4 +6,5 @@ export declare class ProductsService extends BaseService<Product> {
     constructor(productsRepository: Repository<Product>);
     getAllProducts(): Promise<Product[]>;
     getAllProductsByVendorId(id: number): Promise<Product[]>;
+    getAllProductsByCategoryId(id: number): Promise<Product[]>;
 }

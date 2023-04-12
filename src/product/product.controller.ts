@@ -40,4 +40,21 @@ export class ProductsController extends BaseController<Product> {
         .json({ message: 'Error. Please try again later.' });
     }
   }
+  @Get('byCategoryId/:id')
+  async findProductsbyCategoryId(
+    @Res() res,
+    @Param('id') id: number,
+  ): Promise<any[]> {
+    try {
+      const results: any[] =
+        await this.productsService.getAllProductsByVendorId(id);
+      return res
+        .status(HttpStatus.OK)
+        .json({ statusCode: HttpStatus.OK, data: results });
+    } catch (error) {
+      return res
+        .status(HttpStatus.NOT_FOUND)
+        .json({ message: 'Error. Please try again later.' });
+    }
+  }
 }

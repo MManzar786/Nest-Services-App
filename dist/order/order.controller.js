@@ -31,12 +31,12 @@ let OrderController = class OrderController extends base_controller_1.BaseContro
         catch (error) {
             return res
                 .status(common_1.HttpStatus.NOT_FOUND)
-                .json({ message: "Error. Please try again later." });
+                .json({ message: 'Error. Please try again later.' });
         }
     }
     async addOrder(res, entity) {
         try {
-            const results = await this.ordersService.addOrders(entity);
+            const results = await this.ordersService.addOrders(entity.data);
             return res
                 .status(common_1.HttpStatus.OK)
                 .json({ statusCode: common_1.HttpStatus.OK, data: results });
@@ -44,7 +44,7 @@ let OrderController = class OrderController extends base_controller_1.BaseContro
         catch (error) {
             return res
                 .status(common_1.HttpStatus.NOT_FOUND)
-                .json({ message: "Error. Please try again later.", error: error });
+                .json({ message: 'Error. Please try again later.', error: error });
         }
     }
     async setOrderDelivered(id) {
@@ -52,29 +52,29 @@ let OrderController = class OrderController extends base_controller_1.BaseContro
     }
 };
 __decorate([
-    (0, common_1.Get)("all"),
+    (0, common_1.Get)('all'),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Post)("addOrders"),
+    (0, common_1.Post)('addOrders'),
     __param(0, (0, common_1.Res)()),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Array]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "addOrder", null);
 __decorate([
-    (0, common_1.Patch)(":id/delivered"),
-    __param(0, (0, common_1.Param)("id")),
+    (0, common_1.Patch)(':id/delivered'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "setOrderDelivered", null);
 OrderController = __decorate([
-    (0, common_1.Controller)("orders"),
+    (0, common_1.Controller)('orders'),
     __metadata("design:paramtypes", [order_service_1.OrdersService])
 ], OrderController);
 exports.OrderController = OrderController;

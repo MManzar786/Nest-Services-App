@@ -24,4 +24,12 @@ export class ProductsService extends BaseService<Product> {
       relations: ['vendor', 'vendor.service'],
     });
   }
+  getAllProductsByCategoryId(id: number): Promise<Product[]> {
+    return this.productsRepository
+      .createQueryBuilder('product')
+      .leftJoinAndSelect('product.vendor', 'vendor')
+      .leftJoinAndSelect('vendor.category', 'category')
+      .where('category.id = :categoryId', { categoryId: id })
+      .getMany();
+  }
 }
