@@ -39,7 +39,7 @@ __decorate([
     __metadata("design:type", String)
 ], Order.prototype, "status", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp with time zone' }),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", Date)
 ], Order.prototype, "orderDate", void 0);
 __decorate([

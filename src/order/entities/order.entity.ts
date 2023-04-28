@@ -23,7 +23,7 @@ export class Order extends BaseEntity {
   @Column()
   status: string;
 
-  @Column({ type: 'timestamp with time zone' })
+  @Column()
   orderDate: Date;
 
   @Column()
