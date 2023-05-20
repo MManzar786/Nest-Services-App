@@ -9,58 +9,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Order = void 0;
+exports.ProductVariation = void 0;
 const base_entitiy_1 = require("../../base/base.entitiy");
 const typeorm_1 = require("typeorm");
 const product_entity_1 = require("../../product/entities/product.entity");
-let Order = class Order extends base_entitiy_1.BaseEntity {
-    constructor() {
+let ProductVariation = class ProductVariation extends base_entitiy_1.BaseEntity {
+    constructor(o) {
         super();
+        Object.assign(this, o);
     }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Order.prototype, "id", void 0);
+], ProductVariation.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Order.prototype, "customerName", void 0);
+], ProductVariation.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Order.prototype, "customerEmail", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Order.prototype, "customerAddress", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Order.prototype, "status", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp with time zone' }),
-    __metadata("design:type", Date)
-], Order.prototype, "orderDate", void 0);
+], ProductVariation.prototype, "imageUrl", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Order.prototype, "totalPrice", void 0);
+], ProductVariation.prototype, "price", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Order.prototype, "quantity", void 0);
+], ProductVariation.prototype, "productId", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Order.prototype, "productId", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => product_entity_1.Product, (product) => product.orders),
+    (0, typeorm_1.ManyToOne)(() => product_entity_1.Product, (product) => product.productVariations),
     __metadata("design:type", product_entity_1.Product)
-], Order.prototype, "product", void 0);
-Order = __decorate([
-    (0, typeorm_1.Entity)('order'),
-    __metadata("design:paramtypes", [])
-], Order);
-exports.Order = Order;
-//# sourceMappingURL=order.entity.js.map
+], ProductVariation.prototype, "product", void 0);
+ProductVariation = __decorate([
+    (0, typeorm_1.Entity)('productVariation'),
+    __metadata("design:paramtypes", [Object])
+], ProductVariation);
+exports.ProductVariation = ProductVariation;
+//# sourceMappingURL=product-variation.entity.js.map

@@ -1,9 +1,9 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { User } from './user/entities/user.entity';
-import { UsersController } from './user/user.controller';
 import { UserModule } from './user/user.module';
 import { UploadModule } from './upload/upload.module';
 import { VendorModule } from './vendor/vendor.module';
@@ -17,6 +17,8 @@ import { Order } from './order/entities/order.entity';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { JwtModule, JwtService } from '@nestjs/jwt';
+import { ProductVariation } from './product-variation/entities/product-variation.entity';
+import { ProductVariationModule } from './product-variation/product-variation.module';
 // postgresql://postgres:sVaR1DFzQKChuXpywNbs@containers-us-west-97.railway.app:7151/railway
 @Module({
   imports: [
@@ -25,24 +27,36 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
       serveRoot: '/uploads',
     }),
     UserModule,
-//     TypeOrmModule.forRoot({
-//       type: 'mysql',
-//       host: '217.21.84.205',
-//       port: 3306,
-//       username: 'u361559379_user',
-//       password: 'Ft/70T8Bnz',
-//       database: 'u361559379_chawalServices',
-//       entities: [User, Category, Vendor, Product, Order],
-//       synchronize: true,
-//     }),
+    //     TypeOrmModule.forRoot({
+    //       type: 'mysql',
+    //       host: '217.21.84.205',
+    //       port: 3306,
+    //       username: 'u361559379_user',
+    //       password: 'Ft/70T8Bnz',
+    //       database: 'u361559379_chawalServices',
+    //       entities: [User, Category, Vendor, Product, Order],
+    //       synchronize: true,
+    //     }),
+    // TypeOrmModule.forRoot({
+    //   type: 'postgres',
+    //   host: 'containers-us-west-97.railway.app',
+    //   port: 7151,
+    //   username: 'postgres',
+    //   password: 'sVaR1DFzQKChuXpywNbs',
+    //   database: 'railway',
+    //   entities: [User, Category, Vendor, Product, Order],
+    //   synchronize: true,
+    // }),
+    // postgresql://postgres:8xAUs516XjuG5JTBq324@containers-us-west-168.railway.app:7240/railway
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'containers-us-west-97.railway.app',
-      port: 7151,
+      host: 'containers-us-west-168.railway.app',
+      port: 7240,
       username: 'postgres',
-      password: 'sVaR1DFzQKChuXpywNbs',
+      password: '8xAUs516XjuG5JTBq324',
       database: 'railway',
-      entities: [User, Category, Vendor, Product, Order],
+      entities: [User, Category, Vendor, Product, Order, ProductVariation],
+      // eslint-disable-next-line prettier/prettier
       synchronize: true,
     }),
     UploadModule,
@@ -50,6 +64,7 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
     ProductModule,
     CategoryModule,
     OrderModule,
+    ProductVariationModule,
     JwtModule,
   ],
   controllers: [AppController],

@@ -25,6 +25,8 @@ const order_entity_1 = require("./order/entities/order.entity");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
 const jwt_1 = require("@nestjs/jwt");
+const product_variation_entity_1 = require("./product-variation/entities/product-variation.entity");
+const product_variation_module_1 = require("./product-variation/product-variation.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -36,13 +38,13 @@ AppModule = __decorate([
             }),
             user_module_1.UserModule,
             typeorm_1.TypeOrmModule.forRoot({
-                type: 'mysql',
-                host: '217.21.84.205',
-                port: 3306,
-                username: 'u361559379_user',
-                password: 'Ft/70T8Bnz',
-                database: 'u361559379_chawalServices',
-                entities: [user_entity_1.User, category_entity_1.Category, vendor_entity_1.Vendor, product_entity_1.Product, order_entity_1.Order],
+                type: 'postgres',
+                host: 'containers-us-west-168.railway.app',
+                port: 7240,
+                username: 'postgres',
+                password: '8xAUs516XjuG5JTBq324',
+                database: 'railway',
+                entities: [user_entity_1.User, category_entity_1.Category, vendor_entity_1.Vendor, product_entity_1.Product, order_entity_1.Order, product_variation_entity_1.ProductVariation],
                 synchronize: true,
             }),
             upload_module_1.UploadModule,
@@ -50,6 +52,7 @@ AppModule = __decorate([
             product_module_1.ProductModule,
             category_module_1.CategoryModule,
             order_module_1.OrderModule,
+            product_variation_module_1.ProductVariationModule,
             jwt_1.JwtModule,
         ],
         controllers: [app_controller_1.AppController],

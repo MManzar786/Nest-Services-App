@@ -14,6 +14,7 @@ const base_entitiy_1 = require("../../base/base.entitiy");
 const order_entity_1 = require("../../order/entities/order.entity");
 const typeorm_1 = require("typeorm");
 const vendor_entity_1 = require("../../vendor/entites/vendor.entity");
+const product_variation_entity_1 = require("../../product-variation/entities/product-variation.entity");
 let Product = class Product extends base_entitiy_1.BaseEntity {
     constructor(o) {
         super();
@@ -52,6 +53,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => order_entity_1.Order, (orderItem) => orderItem.product),
     __metadata("design:type", Array)
 ], Product.prototype, "orders", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => product_variation_entity_1.ProductVariation, (productVariation) => productVariation.product),
+    __metadata("design:type", Array)
+], Product.prototype, "productVariations", void 0);
 Product = __decorate([
     (0, typeorm_1.Entity)('product'),
     __metadata("design:paramtypes", [Object])
