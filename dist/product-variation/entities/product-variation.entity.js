@@ -13,6 +13,7 @@ exports.ProductVariation = void 0;
 const base_entitiy_1 = require("../../base/base.entitiy");
 const typeorm_1 = require("typeorm");
 const product_entity_1 = require("../../product/entities/product.entity");
+const common_1 = require("@nestjs/common");
 let ProductVariation = class ProductVariation extends base_entitiy_1.BaseEntity {
     constructor(o) {
         super();
@@ -31,6 +32,11 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], ProductVariation.prototype, "imageUrl", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    (0, common_1.Optional)(),
+    __metadata("design:type", String)
+], ProductVariation.prototype, "description", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)

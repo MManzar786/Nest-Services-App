@@ -3,6 +3,7 @@ import { BaseEntity } from 'src/base/base.entitiy';
 import { Order } from 'src/order/entities/order.entity';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { Product } from 'src/product/entities/product.entity';
+import { Optional } from '@nestjs/common';
 
 @Entity('productVariation')
 export class ProductVariation extends BaseEntity {
@@ -19,6 +20,10 @@ export class ProductVariation extends BaseEntity {
 
   @Column()
   imageUrl: string;
+
+  @Column()
+  @Optional()
+  description: string;
 
   @Column()
   price: number;

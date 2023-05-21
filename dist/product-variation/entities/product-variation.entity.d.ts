@@ -5,6 +5,7 @@ export declare class ProductVariation extends BaseEntity {
     id: number;
     name: string;
     imageUrl: string;
+    description: string;
     price: number;
     productId: number;
     product: Product;

@@ -25,7 +25,7 @@ let ProductsService = class ProductsService extends base_service_1.BaseService {
     }
     getAllProducts() {
         return this.productsRepository.find({
-            relations: ['vendor', 'vendor.service'],
+            relations: ['vendor', 'vendor.service', 'productVariations'],
         });
     }
     getAllProductsByVendorId(id) {

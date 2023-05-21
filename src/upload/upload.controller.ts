@@ -30,7 +30,7 @@ export class UploadController {
     try {
       const fileNames = [];
       for (const file of files) {
-        const filePath = `https://nest-services-app-production.up.railway.app/uploads/${file.filename}`;
+        const filePath = `https://chakwal-services-app-production.up.railway.app/uploads/${file.filename}`;
         fileNames.push(filePath);
       }
       return { fileNames };
