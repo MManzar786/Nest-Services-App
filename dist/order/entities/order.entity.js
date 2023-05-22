@@ -13,6 +13,8 @@ exports.Order = void 0;
 const base_entitiy_1 = require("../../base/base.entitiy");
 const typeorm_1 = require("typeorm");
 const product_entity_1 = require("../../product/entities/product.entity");
+const product_variation_entity_1 = require("../../product-variation/entities/product-variation.entity");
+const common_1 = require("@nestjs/common");
 let Order = class Order extends base_entitiy_1.BaseEntity {
     constructor() {
         super();
@@ -58,6 +60,15 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => product_entity_1.Product, (product) => product.orders),
     __metadata("design:type", product_entity_1.Product)
 ], Order.prototype, "product", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: 0 }),
+    (0, common_1.Optional)(),
+    __metadata("design:type", Number)
+], Order.prototype, "variationId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => product_variation_entity_1.ProductVariation, (product) => product.orders),
+    __metadata("design:type", product_variation_entity_1.ProductVariation)
+], Order.prototype, "productVariation", void 0);
 Order = __decorate([
     (0, typeorm_1.Entity)('order'),
     __metadata("design:paramtypes", [])

@@ -28,7 +28,7 @@ let OrdersService = class OrdersService extends base_service_1.BaseService {
             order: {
                 orderDate: 'DESC',
             },
-            relations: ['product', 'product.vendor'],
+            relations: ['product', 'product.vendor', 'product.productVariations'],
         });
     }
     async addOrders(orders) {

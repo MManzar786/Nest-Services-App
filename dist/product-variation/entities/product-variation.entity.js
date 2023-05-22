@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductVariation = void 0;
 const base_entitiy_1 = require("../../base/base.entitiy");
+const order_entity_1 = require("../../order/entities/order.entity");
 const typeorm_1 = require("typeorm");
 const product_entity_1 = require("../../product/entities/product.entity");
 const common_1 = require("@nestjs/common");
@@ -49,6 +50,10 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => product_entity_1.Product, (product) => product.productVariations),
     __metadata("design:type", product_entity_1.Product)
 ], ProductVariation.prototype, "product", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => order_entity_1.Order, (orderItem) => orderItem.productVariation),
+    __metadata("design:type", Array)
+], ProductVariation.prototype, "orders", void 0);
 ProductVariation = __decorate([
     (0, typeorm_1.Entity)('productVariation'),
     __metadata("design:paramtypes", [Object])

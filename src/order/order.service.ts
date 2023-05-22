@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -17,7 +18,7 @@ export class OrdersService extends BaseService<Order> {
       order: {
         orderDate: 'DESC',
       },
-      relations: ['product', 'product.vendor'],
+      relations: ['product', 'product.vendor', 'product.productVariations'],
     });
   }
 

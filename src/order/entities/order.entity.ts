@@ -1,6 +1,9 @@
+/* eslint-disable prettier/prettier */
 import { BaseEntity } from 'src/base/base.entitiy';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { Product } from '../../product/entities/product.entity';
+import { ProductVariation } from 'src/product-variation/entities/product-variation.entity';
+import { Optional } from '@nestjs/common';
 
 @Entity('order')
 export class Order extends BaseEntity {
@@ -37,4 +40,12 @@ export class Order extends BaseEntity {
 
   @ManyToOne(() => Product, (product) => product.orders)
   product: Product;
+
+  @Column({ default: 0 })
+  @Optional()
+  variationId: number;
+
+  // eslint-disable-next-line prettier/prettier
+  @ManyToOne(() => ProductVariation, (product) => product.orders)
+  productVariation: ProductVariation;
 }
