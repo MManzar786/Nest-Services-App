@@ -14,5 +14,5 @@ export declare class Order extends BaseEntity {
     productId: number;
     product: Product;
     variationId: number;
-    productVariation: ProductVariation;
+    variation: ProductVariation;
 }

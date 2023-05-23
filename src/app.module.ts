@@ -50,10 +50,10 @@ import { ProductVariationModule } from './product-variation/product-variation.mo
     // postgresql://postgres:8xAUs516XjuG5JTBq324@containers-us-west-168.railway.app:7240/railway
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'containers-us-west-168.railway.app',
-      port: 7240,
+      host: 'containers-us-west-196.railway.app',
+      port: 7674,
       username: 'postgres',
-      password: '8xAUs516XjuG5JTBq324',
+      password: 'hiJLHaBFGRkNqHFd59MD',
       database: 'railway',
       entities: [User, Category, Vendor, Product, Order, ProductVariation],
       // eslint-disable-next-line prettier/prettier

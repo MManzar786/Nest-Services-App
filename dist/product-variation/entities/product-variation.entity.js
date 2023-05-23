@@ -51,7 +51,7 @@ __decorate([
     __metadata("design:type", product_entity_1.Product)
 ], ProductVariation.prototype, "product", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => order_entity_1.Order, (orderItem) => orderItem.productVariation),
+    (0, typeorm_1.OneToMany)(() => order_entity_1.Order, (orderItem) => orderItem.variation),
     __metadata("design:type", Array)
 ], ProductVariation.prototype, "orders", void 0);
 ProductVariation = __decorate([

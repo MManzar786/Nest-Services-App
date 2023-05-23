@@ -21,7 +21,7 @@ export class ProductsService extends BaseService<Product> {
   getAllProductsByVendorId(id: number): Promise<Product[]> {
     return this.productsRepository.find({
       where: { vendorId: id },
-      relations: ['vendor', 'vendor.service'],
+      relations: ['vendor', 'vendor.service', 'productVariations'],
     });
   }
   getAllProductsByCategoryId(id: number): Promise<Product[]> {
@@ -29,6 +29,7 @@ export class ProductsService extends BaseService<Product> {
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.vendor', 'vendor')
       .leftJoinAndSelect('vendor.category', 'category')
+      .leftJoinAndSelect('productVariations', 'productVariatons')
       .where('category.id = :categoryId', { categoryId: id })
       .getMany();
   }

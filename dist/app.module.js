@@ -39,10 +39,10 @@ AppModule = __decorate([
             user_module_1.UserModule,
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',
-                host: 'containers-us-west-168.railway.app',
-                port: 7240,
+                host: 'containers-us-west-196.railway.app',
+                port: 7674,
                 username: 'postgres',
-                password: '8xAUs516XjuG5JTBq324',
+                password: 'hiJLHaBFGRkNqHFd59MD',
                 database: 'railway',
                 entities: [user_entity_1.User, category_entity_1.Category, vendor_entity_1.Vendor, product_entity_1.Product, order_entity_1.Order, product_variation_entity_1.ProductVariation],
                 synchronize: true,

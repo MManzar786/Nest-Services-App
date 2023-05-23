@@ -18,7 +18,7 @@ export class OrdersService extends BaseService<Order> {
       order: {
         orderDate: 'DESC',
       },
-      relations: ['product', 'product.vendor', 'product.productVariations'],
+      relations: ['product', 'product.vendor', 'variation'],
     });
   }
 

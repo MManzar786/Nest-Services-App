@@ -40,6 +40,6 @@ export class ProductVariation extends BaseEntity {
   @ManyToOne(() => Product, (product) => product.productVariations)
   product: Product;
 
-  @OneToMany(() => Order, (orderItem) => orderItem.productVariation)
+  @OneToMany(() => Order, (orderItem) => orderItem.variation)
   orders: Order[];
 }

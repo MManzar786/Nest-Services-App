@@ -45,7 +45,9 @@ export class Order extends BaseEntity {
   @Optional()
   variationId: number;
 
-  // eslint-disable-next-line prettier/prettier
-  @ManyToOne(() => ProductVariation, (product) => product.orders)
-  productVariation: ProductVariation;
+  @ManyToOne(
+    () => ProductVariation,
+    (productVariation) => productVariation.orders,
+  )
+  variation: ProductVariation;
 }

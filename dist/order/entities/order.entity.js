@@ -66,9 +66,9 @@ __decorate([
     __metadata("design:type", Number)
 ], Order.prototype, "variationId", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => product_variation_entity_1.ProductVariation, (product) => product.orders),
+    (0, typeorm_1.ManyToOne)(() => product_variation_entity_1.ProductVariation, (productVariation) => productVariation.orders),
     __metadata("design:type", product_variation_entity_1.ProductVariation)
-], Order.prototype, "productVariation", void 0);
+], Order.prototype, "variation", void 0);
 Order = __decorate([
     (0, typeorm_1.Entity)('order'),
     __metadata("design:paramtypes", [])
