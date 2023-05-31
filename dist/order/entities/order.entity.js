@@ -61,11 +61,12 @@ __decorate([
     __metadata("design:type", product_entity_1.Product)
 ], Order.prototype, "product", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ default: 0 }),
+    (0, typeorm_1.Column)({ nullable: true }),
     (0, common_1.Optional)(),
     __metadata("design:type", Number)
 ], Order.prototype, "variationId", void 0);
 __decorate([
+    (0, common_1.Optional)(),
     (0, typeorm_1.ManyToOne)(() => product_variation_entity_1.ProductVariation, (productVariation) => productVariation.orders),
     __metadata("design:type", product_variation_entity_1.ProductVariation)
 ], Order.prototype, "variation", void 0);

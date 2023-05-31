@@ -41,10 +41,11 @@ export class Order extends BaseEntity {
   @ManyToOne(() => Product, (product) => product.orders)
   product: Product;
 
-  @Column({ default: 0 })
+  @Column({ nullable: true })
   @Optional()
   variationId: number;
 
+  @Optional()
   @ManyToOne(
     () => ProductVariation,
     (productVariation) => productVariation.orders,
