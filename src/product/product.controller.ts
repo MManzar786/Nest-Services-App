@@ -47,11 +47,13 @@ export class ProductsController extends BaseController<Product> {
   ): Promise<any[]> {
     try {
       const results: any[] =
-        await this.productsService.getAllProductsByVendorId(id);
+        await this.productsService.getAllProductsByCategoryId(id);
       return res
         .status(HttpStatus.OK)
         .json({ statusCode: HttpStatus.OK, data: results });
     } catch (error) {
+      console.log(error);
+
       return res
         .status(HttpStatus.NOT_FOUND)
         .json({ message: 'Error. Please try again later.' });

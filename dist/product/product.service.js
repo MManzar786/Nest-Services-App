@@ -37,10 +37,9 @@ let ProductsService = class ProductsService extends base_service_1.BaseService {
     getAllProductsByCategoryId(id) {
         return this.productsRepository
             .createQueryBuilder('product')
-            .leftJoinAndSelect('product.vendor', 'vendor')
-            .leftJoinAndSelect('vendor.category', 'category')
-            .leftJoinAndSelect('productVariations', 'productVariatons')
-            .where('category.id = :categoryId', { categoryId: id })
+            .innerJoinAndSelect('product.vendor', 'vendor')
+            .innerJoinAndSelect('vendor.service', 'category', 'category.id = :categoryId', { categoryId: id })
+            .leftJoinAndSelect('product.productVariations', 'productVariations')
             .getMany();
     }
 };

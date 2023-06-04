@@ -49,12 +49,13 @@ let ProductsController = class ProductsController extends base_controller_1.Base
     }
     async findProductsbyCategoryId(res, id) {
         try {
-            const results = await this.productsService.getAllProductsByVendorId(id);
+            const results = await this.productsService.getAllProductsByCategoryId(id);
             return res
                 .status(common_1.HttpStatus.OK)
                 .json({ statusCode: common_1.HttpStatus.OK, data: results });
         }
         catch (error) {
+            console.log(error);
             return res
                 .status(common_1.HttpStatus.NOT_FOUND)
                 .json({ message: 'Error. Please try again later.' });
